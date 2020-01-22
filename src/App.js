@@ -3,6 +3,7 @@ import React from 'react';
 import './global.css';
 import './App.css';
 import './Sidebar.css';
+import './Main.css';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
               <label htmlFor="latitude">Latitude</label>
               <input name="latitude" id="latitude" required />            
             </div>
-            
+
             <div className="input-block">
               <label htmlFor="longitude">Longitude</label>
               <input name="longitude" id="longitude" required />            
@@ -37,7 +38,59 @@ function App() {
       </aside>
 
       <main>
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/33496399?s=460&v=4" alt="jordelucas"/>
+              <div className="user-info">
+                <strong>Jordeva</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
 
+            <p>Graduando de TI pela Universidade Federal do Rio Grande do Norte e bolsista Desenvolvedor WEB Front-End da Diretoria de TI do Instituto Metrópole Digital</p>
+            <a href="https://github.com/jordelucas">Acessar perfil no github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/33496399?s=460&v=4" alt="jordelucas"/>
+              <div className="user-info">
+                <strong>Jordeva</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+
+            <p>Graduando de TI pela Universidade Federal do Rio Grande do Norte e bolsista Desenvolvedor WEB Front-End da Diretoria de TI do Instituto Metrópole Digital</p>
+            <a href="https://github.com/jordelucas">Acessar perfil no github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/33496399?s=460&v=4" alt="jordelucas"/>
+              <div className="user-info">
+                <strong>Jordeva</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+
+            <p>Graduando de TI pela Universidade Federal do Rio Grande do Norte e bolsista Desenvolvedor WEB Front-End da Diretoria de TI do Instituto Metrópole Digital</p>
+            <a href="https://github.com/jordelucas">Acessar perfil no github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/33496399?s=460&v=4" alt="jordelucas"/>
+              <div className="user-info">
+                <strong>Jordeva</strong>
+                <span>ReactJS, React Native, Node.js</span>
+              </div>
+            </header>
+
+            <p>Graduando de TI pela Universidade Federal do Rio Grande do Norte e bolsista Desenvolvedor WEB Front-End da Diretoria de TI do Instituto Metrópole Digital</p>
+            <a href="https://github.com/jordelucas">Acessar perfil no github</a>
+          </li>
+        </ul>
       </main>
     </div>
   );
