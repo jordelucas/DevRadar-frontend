@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from './services/api'
 
 import './global.css';
 import './App.css';
@@ -6,6 +7,8 @@ import './Sidebar.css';
 import './Main.css';
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
   const [github_username, setGithubUsername] = useState('');
   const [techs, setTechs] = useState('');
 
@@ -26,10 +29,30 @@ function App() {
         timeout: 30000,
       }
     )
+  }, []);
+
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs')
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
   }, [])
 
   async function handleAddDev(e) {
     e.preventDefault();
+
+    const response = await api.post('./devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude,
+    })
+
+    setGithubUsername('');
+    setTechs('');
   }
   
   return (
@@ -91,57 +114,21 @@ function App() {
 
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/33496399?s=460&v=4" alt="jordelucas"/>
-              <div className="user-info">
-                <strong>Jordeva</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-
-            <p>Graduando de TI pela Universidade Federal do Rio Grande do Norte e bolsista Desenvolvedor WEB Front-End da Diretoria de TI do Instituto Metrópole Digital</p>
-            <a href="https://github.com/jordelucas">Acessar perfil no github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/33496399?s=460&v=4" alt="jordelucas"/>
-              <div className="user-info">
-                <strong>Jordeva</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-
-            <p>Graduando de TI pela Universidade Federal do Rio Grande do Norte e bolsista Desenvolvedor WEB Front-End da Diretoria de TI do Instituto Metrópole Digital</p>
-            <a href="https://github.com/jordelucas">Acessar perfil no github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/33496399?s=460&v=4" alt="jordelucas"/>
-              <div className="user-info">
-                <strong>Jordeva</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-
-            <p>Graduando de TI pela Universidade Federal do Rio Grande do Norte e bolsista Desenvolvedor WEB Front-End da Diretoria de TI do Instituto Metrópole Digital</p>
-            <a href="https://github.com/jordelucas">Acessar perfil no github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/33496399?s=460&v=4" alt="jordelucas"/>
-              <div className="user-info">
-                <strong>Jordeva</strong>
-                <span>ReactJS, React Native, Node.js</span>
-              </div>
-            </header>
-
-            <p>Graduando de TI pela Universidade Federal do Rio Grande do Norte e bolsista Desenvolvedor WEB Front-End da Diretoria de TI do Instituto Metrópole Digital</p>
-            <a href="https://github.com/jordelucas">Acessar perfil no github</a>
-          </li>
+          {devs.map(dev => {
+            return (
+              <li key={dev._id} className="dev-item">
+                <header>
+                  <img src={dev.avatar_url} alt={dev.name}/>
+                  <div className="user-info">
+                    <strong>{dev.name}</strong>
+                    <span>{dev.techs.join(', ')}</span>
+                  </div>
+                </header>
+                <p>{dev.bio}</p>
+                <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no github</a>
+              </li>
+            )
+          })}
         </ul>
       </main>
     </div>
